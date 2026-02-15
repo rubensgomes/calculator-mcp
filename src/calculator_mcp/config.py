@@ -1,0 +1,70 @@
+# General Disclaimer
+#
+# **AI Generated Content**
+#
+# This project's source code and documentation were generated predominantly
+# by an Artificial Intelligence Large Language Model (AI LLM). The project
+# lead, [Rubens Gomes](https://rubensgomes.com), provided initial prompts,
+# reviewed, and made refinements to the generated output. While human review and
+# refinement have occurred, users should be aware that the output may contain
+# inaccuracies, errors, or security vulnerabilities
+#
+# **Third-Party Content Notice**
+#
+# This software may include components or snippets derived from third-party
+# sources. The software's users and distributors are responsible for ensuring
+# compliance with any underlying licenses applicable to such components.
+#
+# **Copyright Status Statement**
+#
+# Copyright protection, if any, is limited to the original human contributions and
+# modifications made to this project. The AI-generated portions of the code and
+# documentation are not subject to copyright and are considered to be in the
+# public domain.
+#
+# **Limitation of liability**
+#
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+# OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+# OR OTHER DEALINGS IN THE SOFTWARE.
+#
+# **No-Warranty Disclaimer**
+#
+# THIS SOFTWARE IS PROVIDED 'AS IS,' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+import logging
+import logging.config
+from pathlib import Path
+
+import yaml
+
+_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent / "config.yaml"
+
+
+def _load_config() -> dict:
+    """Load and return the full config.yaml as a dict."""
+    with open(_CONFIG_PATH) as f:
+        return yaml.safe_load(f)
+
+
+def configure_logging() -> None:
+    """Apply the logging configuration from config.yaml."""
+    config = _load_config()
+    logging.config.dictConfig(config["logging"])
+
+
+configure_logging()
+
+logger = logging.getLogger(__name__)
+
+
+def get_base_url() -> str:
+    """Return the calculator REST API base URL from config.yaml."""
+    logger.debug("Loading config from %s", _CONFIG_PATH)
+    config = _load_config()
+    base_url = config["calculator_api"]["base_url"]
+    logger.info("Calculator API base URL: %s", base_url)
+    return base_url
