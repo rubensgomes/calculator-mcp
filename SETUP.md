@@ -26,4 +26,4 @@
    - git remote add origin "https://github.com/rubensgomes/${PROJ_NAME}"
    - git push -u origin main
 
-
+After previous steps go to GitHub remote repo and create a "release" branch.
