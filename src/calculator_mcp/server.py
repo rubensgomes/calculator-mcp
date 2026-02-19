@@ -38,15 +38,17 @@
 import logging
 from importlib.metadata import version
 
-import httpx
+from calculator_lib import Calculator
 from fastmcp import FastMCP
 
-from calculator_mcp.config import get_base_url
+from calculator_mcp.config import get_host, get_port, get_timeout, get_transport
 
 logger = logging.getLogger(__name__)
 
 _HOMEPAGE = "https://github.com/rubensgomes/calculator-mcp/"
-_BASE_URL = get_base_url()
+_TIMEOUT = get_timeout()
+
+_calc = Calculator()
 
 mcp = FastMCP(
     "Calculator MCP Server",
@@ -56,137 +58,245 @@ mcp = FastMCP(
 logger.info("Initialized Calculator MCP Server")
 
 
-async def _post(endpoint: str, payload: dict) -> float:
-    """POST JSON to the calculator API and return the result."""
-    url = f"{_BASE_URL}/{endpoint}"
-    logger.debug("POST %s with payload %s", url, payload)
-    async with httpx.AsyncClient() as client:
-        response = await client.post(url, json=payload)
-        response.raise_for_status()
-        result = response.json()["result"]
-    logger.debug("POST %s returned result=%s", url, result)
-    return result
-
-
 # --- Two-operand tools ---
 
 
-@mcp.tool
-async def add(a: float, b: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def add(a: float, b: float) -> float:
     """Return the sum of two numbers."""
     logger.info("add called with a=%s, b=%s", a, b)
-    return await _post("add", {"a": a, "b": b})
+    return _calc.add(a, b)
 
 
-@mcp.tool
-async def subtract(a: float, b: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def subtract(a: float, b: float) -> float:
     """Return the difference of two numbers."""
     logger.info("subtract called with a=%s, b=%s", a, b)
-    return await _post("subtract", {"a": a, "b": b})
+    return _calc.subtract(a, b)
 
 
-@mcp.tool
-async def multiply(a: float, b: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def multiply(a: float, b: float) -> float:
     """Return the product of two numbers."""
     logger.info("multiply called with a=%s, b=%s", a, b)
-    return await _post("multiply", {"a": a, "b": b})
+    return _calc.multiply(a, b)
 
 
-@mcp.tool
-async def divide(a: float, b: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def divide(a: float, b: float) -> float:
     """Return the quotient of two numbers.
 
-    Returns an HTTP 400 Bad Request error on division by zero.
+    Raises ValueError on division by zero.
     """
     logger.info("divide called with a=%s, b=%s", a, b)
-    return await _post("divide", {"a": a, "b": b})
+    return _calc.divide(a, b)
 
 
-@mcp.tool
-async def power(a: float, b: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def power(a: float, b: float) -> float:
     """Return a raised to the power b."""
     logger.info("power called with a=%s, b=%s", a, b)
-    return await _post("power", {"a": a, "b": b})
+    return _calc.power(a, b)
 
 
-@mcp.tool
-async def nth_root(a: float, b: float) -> float:
-    """Return the b-th root of a. Returns an HTTP 400 Bad Request error on invalid input."""
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def nth_root(a: float, b: float) -> float:
+    """Return the b-th root of a. Raises ValueError on invalid input."""
     logger.info("nth_root called with a=%s, b=%s", a, b)
-    return await _post("nth_root", {"a": a, "b": b})
+    return _calc.nth_root(a, b)
 
 
-@mcp.tool
-async def modulo(a: float, b: float) -> float:
-    """Return a mod b. Returns an HTTP 400 Bad Request error on modulo by zero."""
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def modulo(a: float, b: float) -> float:
+    """Return a mod b. Raises ValueError on modulo by zero."""
     logger.info("modulo called with a=%s, b=%s", a, b)
-    return await _post("modulo", {"a": a, "b": b})
+    return _calc.modulo(a, b)
 
 
-@mcp.tool
-async def floor_divide(a: float, b: float) -> float:
-    """Return the floor division of a by b. Returns an HTTP 400 Bad Request error on division by zero."""
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def floor_divide(a: float, b: float) -> float:
+    """Return the floor division of a by b. Raises ValueError on division by zero."""
     logger.info("floor_divide called with a=%s, b=%s", a, b)
-    return await _post("floor_divide", {"a": a, "b": b})
+    return _calc.floor_divide(a, b)
 
 
 # --- Single-operand tools ---
 
 
-@mcp.tool
-async def sqrt(a: float) -> float:
-    """Return the square root. Returns an HTTP 400 Bad Request error on negative input."""
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def sqrt(a: float) -> float:
+    """Return the square root. Raises ValueError on negative input."""
     logger.info("sqrt called with a=%s", a)
-    return await _post("sqrt", {"a": a})
+    return _calc.sqrt(a)
 
 
-@mcp.tool
-async def absolute(a: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def absolute(a: float) -> float:
     """Return the absolute value."""
     logger.info("absolute called with a=%s", a)
-    return await _post("absolute", {"a": a})
+    return _calc.absolute(a)
 
 
-@mcp.tool
-async def floor(a: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def floor(a: float) -> float:
     """Return the floor of a."""
     logger.info("floor called with a=%s", a)
-    return await _post("floor", {"a": a})
+    return _calc.floor(a)
 
 
-@mcp.tool
-async def ceil(a: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def ceil(a: float) -> float:
     """Return the ceiling of a."""
     logger.info("ceil called with a=%s", a)
-    return await _post("ceil", {"a": a})
+    return _calc.ceil(a)
 
 
-@mcp.tool
-async def log10(a: float) -> float:
-    """Return the base-10 logarithm. Returns an HTTP 400 Bad Request error on non-positive input."""
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def log10(a: float) -> float:
+    """Return the base-10 logarithm. Raises ValueError on non-positive input."""
     logger.info("log10 called with a=%s", a)
-    return await _post("log10", {"a": a})
+    return _calc.log10(a)
 
 
-@mcp.tool
-async def ln(a: float) -> float:
-    """Return the natural logarithm. Returns an HTTP 400 Bad Request error on non-positive input."""
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def ln(a: float) -> float:
+    """Return the natural logarithm. Raises ValueError on non-positive input."""
     logger.info("ln called with a=%s", a)
-    return await _post("ln", {"a": a})
+    return _calc.ln(a)
 
 
-@mcp.tool
-async def exp(a: float) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def exp(a: float) -> float:
     """Return e raised to the power a."""
     logger.info("exp called with a=%s", a)
-    return await _post("exp", {"a": a})
+    return _calc.exp(a)
 
 
 # --- Round tool ---
 
 
-@mcp.tool
-async def round_number(a: float, decimals: int = 0) -> float:
+@mcp.tool(
+    timeout=_TIMEOUT,
+    annotations={
+        "readOnlyHint": True,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    },
+)
+def round_number(a: float, decimals: int = 0) -> float:
     """Return a rounded to the given number of decimal places."""
     logger.info("round_number called with a=%s, decimals=%s", a, decimals)
-    return await _post("round", {"a": a, "decimals": decimals})
+    return _calc.round_number(a, decimals)
+
+
+if __name__ == "__main__":
+    transport = get_transport()
+    if transport == "http":
+        mcp.run(transport="http", host=get_host(), port=get_port())
+    else:
+        mcp.run(transport="stdio")

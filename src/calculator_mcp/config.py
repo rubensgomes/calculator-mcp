@@ -61,10 +61,33 @@ configure_logging()
 logger = logging.getLogger(__name__)
 
 
-def get_base_url() -> str:
-    """Return the calculator REST API base URL from config.yaml."""
-    logger.debug("Loading config from %s", _CONFIG_PATH)
+def get_timeout() -> int:
+    """Return the HTTP client timeout (seconds) from config.yaml."""
     config = _load_config()
-    base_url = config["calculator_api"]["base_url"]
-    logger.info("Calculator API base URL: %s", base_url)
-    return base_url
+    timeout: int = config["server"]["timeout"]
+    logger.info("HTTP client timeout: %s seconds", timeout)
+    return timeout
+
+
+def get_transport() -> str:
+    """Return the MCP transport type ('stdio' or 'http') from config.yaml."""
+    config = _load_config()
+    transport: str = config["server"]["transport"]
+    logger.info("MCP transport: %s", transport)
+    return transport
+
+
+def get_host() -> str:
+    """Return the HTTP/MCP server host address from config.yaml."""
+    config = _load_config()
+    host: str = config["server"]["host"]
+    logger.info("MCP host: %s", host)
+    return host
+
+
+def get_port() -> int:
+    """Return the HTTP/MCP server port from config.yaml."""
+    config = _load_config()
+    port: int = config["server"]["port"]
+    logger.info("MCP port: %s", port)
+    return port

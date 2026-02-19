@@ -1,8 +1,15 @@
 # =============================================================================
 # Server Configuration
 # =============================================================================
-calculator_api:
-  base_url: "http://localhost:8000"
+server:
+  # MCP transport: "stdio" or "http"
+  transport: "stdio"
+  # Host IP address for the HTTP/MCP server
+  host: "127.0.0.1"
+  # Port for the HTTP/MCP server
+  port: 9000
+  # timeout in seconds
+  timeout: 10
 
 # =============================================================================
 # Logging Configuration

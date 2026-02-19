@@ -153,6 +153,18 @@ files = [
 ]
 
 [[package]]
+name = "calculator-lib-rubens"
+version = "0.1.2"
+description = "A python calculator library."
+optional = false
+python-versions = ">=3.14"
+groups = ["main"]
+files = [
+    {file = "calculator_lib_rubens-0.1.2-py3-none-any.whl", hash = "sha256:176d38995ccfee9ad6c3573e1446e57858d4de22e18509934d2e0374b50d72ba"},
+    {file = "calculator_lib_rubens-0.1.2.tar.gz", hash = "sha256:164e5c6f9c4ef0dab5761866de7765e191abdadaaaa160a13b17b46981dda587"},
+]
+
+[[package]]
 name = "certifi"
 version = "2026.1.4"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -1812,6 +1824,25 @@ pygments = ">=2.7.2"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-asyncio"
+version = "1.3.0"
+description = "Pytest support for asyncio"
+optional = false
+python-versions = ">=3.10"
+groups = ["dev"]
+files = [
+    {file = "pytest_asyncio-1.3.0-py3-none-any.whl", hash = "sha256:611e26147c7f77640e6d0a92a38ed17c3e9848063698d5c93d5aa7aa11cebff5"},
+    {file = "pytest_asyncio-1.3.0.tar.gz", hash = "sha256:d7f52f36d231b80ee124cd216ffb19369aa168fc10095013c6b014a34d3ee9e5"},
+]
+
+[package.dependencies]
+pytest = ">=8.2,<10"
+
+[package.extras]
+docs = ["sphinx (>=5.3)", "sphinx-rtd-theme (>=1)"]
+testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
+
+[[package]]
 name = "pytest-cov"
 version = "7.0.0"
 description = "Pytest plugin for measuring coverage."
@@ -2601,5 +2632,5 @@ type = ["pytest-mypy"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.13,<4.0.0"
-content-hash = "58b658fef9613c8bc7d68bd38d2426bc5614e1544817c0565280b69b2dfcfb38"
+python-versions = ">=3.14,<4.0.0"
+content-hash = "8b420743c23ecc83c2370f63061a08b0ea7022b9492516c60ec2b748c11fa2c0"

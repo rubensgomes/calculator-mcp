@@ -1,10 +1,10 @@
 # Calculator MCP Server
 
-> An MCP (Model Context Protocol) server that exposes calculator operations as tools, proxying requests to a Calculator REST API.
+> An MCP (Model Context Protocol) server that exposes calculator operations as tools, delegating computation to the `calculator-lib-rubens` library.
 
 ## Overview
 
-This project provides a FastMCP server with 16 calculator tool functions. Each tool accepts numeric parameters, sends an HTTP POST request to an upstream Calculator REST API, and returns the numeric result. The server is designed to be used by MCP-compatible clients (such as LLM agents) that need to perform arithmetic and mathematical operations.
+This project provides a FastMCP server with 16 calculator tool functions. Each tool accepts numeric parameters, delegates computation to a shared `Calculator` instance from the `calculator-lib-rubens` library, and returns the numeric result. The server is designed to be used by MCP-compatible clients (such as LLM agents) that need to perform arithmetic and mathematical operations.
 
 ## Tools
 
@@ -37,7 +37,10 @@ This project provides a FastMCP server with 16 calculator tool functions. Each t
 
 The server reads `config.yaml` from the project root at startup. This file contains:
 
-- `calculator_api.base_url`: The base URL of the upstream Calculator REST API (default: `http://localhost:8000`).
+- `server.transport`: MCP transport type (`stdio` or `http`).
+- `server.host`: Host address for HTTP transport.
+- `server.port`: Port for HTTP transport.
+- `server.timeout`: Tool execution timeout in seconds.
 - `logging`: Python `dictConfig` logging configuration.
 
 ## Key Files
@@ -45,11 +48,10 @@ The server reads `config.yaml` from the project root at startup. This file conta
 - `src/calculator_mcp/server.py`: FastMCP server and all 16 tool definitions.
 - `src/calculator_mcp/config.py`: Configuration loader and logging setup.
 - `config.yaml`: Runtime configuration.
-- `openapi.yaml`: OpenAPI 3.1 spec for the upstream Calculator REST API.
 - `pyproject.toml`: Project metadata and dependencies.
 
 ## Dependencies
 
 - fastmcp: MCP server framework.
-- httpx: Async HTTP client for proxying requests.
+- calculator-lib-rubens: Calculator library providing arithmetic and math operations.
 - pyyaml: YAML configuration loading.

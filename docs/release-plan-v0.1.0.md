@@ -19,9 +19,9 @@ operations exposed as MCP tools that proxy requests to a Calculator REST API ove
 - [x] **Step 5** — Commit any uncommitted changes
 - [x] **Step 6** — Update CHANGELOG.md with v0.1.0 release notes
 - [x] **Step 7** — Save this release plan to `docs/` folder
-- [ ] **Step 8** — Commit all release changes
-- [ ] **Step 9** — Tag release as `v0.1.0`
-- [ ] **Step 10** — Push to remote (commits + tag)
+- [x] **Step 8** — Commit all release changes
+- [x] **Step 9** — Tag release as `v0.1.0`
+- [x] **Step 10** — Push to remote (commits + tag)
 
 ## Release Contents (v0.1.0 — Initial Release)
 

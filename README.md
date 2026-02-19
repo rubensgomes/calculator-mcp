@@ -1,22 +1,24 @@
 # Calculator MCP Server
 
-An MCP (Model Context Protocol) server that exposes calculator operations as tools. Each tool proxies requests to a Calculator REST API over HTTP.
+An MCP (Model Context Protocol) server that exposes calculator operations as
+tools. Each tool delegates computation to the `calculator-lib-rubens` library.
 
 ## Features
 
 16 calculator tools available via MCP:
 
-**Two-operand operations**: `add`, `subtract`, `multiply`, `divide`, `power`, `nth_root`, `modulo`, `floor_divide`
+**Two-operand operations**: `add`, `subtract`, `multiply`, `divide`, `power`,
+`nth_root`, `modulo`, `floor_divide`
 
-**Single-operand operations**: `sqrt`, `absolute`, `floor`, `ceil`, `log10`, `ln`, `exp`
+**Single-operand operations**: `sqrt`, `absolute`, `floor`, `ceil`, `log10`,
+`ln`, `exp`
 
 **Rounding**: `round_number` (with configurable decimal places)
 
 ## Prerequisites
 
-- Python 3.13+
+- Python 3.14+
 - [Poetry](https://python-poetry.org/) for dependency management
-- A running instance of the Calculator REST API (see `openapi.yaml` for the API spec)
 
 ## Installation
 
@@ -29,15 +31,21 @@ poetry install
 Edit `config.yaml` in the project root:
 
 ```yaml
-calculator_api:
-  base_url: "http://localhost:8000"
+server:
+  transport: "stdio"    # "stdio" or "http"
+  host: "127.0.0.1"     # Host for HTTP transport
+  port: 9000            # Port for HTTP transport
+  timeout: 10           # Tool execution timeout in seconds
 ```
 
-The `logging` section in `config.yaml` controls Python logging via `dictConfig`. The default configuration logs `calculator_mcp` messages at `INFO` level to stderr.
+The `logging` section in `config.yaml` controls Python logging via `dictConfig`.
+The default configuration logs `calculator_mcp` messages at `INFO` level to
+stderr.
 
 ## Usage
 
-The server can be started using the FastMCP CLI or integrated into any MCP-compatible client.
+The server can be started using the FastMCP CLI or integrated into any
+MCP-compatible client.
 
 ## Development
 
@@ -63,15 +71,15 @@ poetry run mypy src/calculator_mcp
 
 ```
 calculator-mcp/
-├── config.yaml                    # Runtime config (API base URL, logging)
-├── openapi.yaml                   # OpenAPI spec for the upstream Calculator REST API
+├── config.yaml                    # Runtime config (transport, logging)
 ├── pyproject.toml                 # Project metadata, dependencies, tool config
 ├── src/calculator_mcp/
 │   ├── __init__.py
 │   ├── config.py                  # Loads config.yaml, configures logging
 │   └── server.py                  # FastMCP server with 16 @mcp.tool functions
 └── tests/
-    └── __init__.py
+    ├── __init__.py
+    └── test_server.py
 ```
 
 ## License
