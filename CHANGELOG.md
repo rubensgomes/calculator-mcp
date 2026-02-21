@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-02-20
+
+### Changed
+
+- Expanded `.gitignore` with comprehensive ignore rules for Claude Code, Python, Jupyter, testing, packaging, and OS-specific files
+- Fixed typo in `LICENSE` (missing period after "security vulnerabilities")
+- Capitalized "Limitation of Liability" heading in `LICENSE`
+- Streamlined `RELEASE.md` to reference the Claude Code slash command instead of inline command listings
+- Expanded `SETUP.md` with full development environment setup instructions (pyenv, python, pipx, poetry)
+- Updated `poetry.lock`
+
 ## [0.2.0] - 2026-02-18
 
 ### Changed
