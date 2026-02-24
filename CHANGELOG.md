@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-02-24
+
+### Added
+
+- `main.py` module with signal handling and server startup logic
+- Bundled `config.yaml` inside the package for reliable deployed resolution
+- `CALCULATOR_MCP_CONFIG` environment variable to override the default config path
+
+### Changed
+
+- Refactored `server.py` to contain only FastMCP instance and tool definitions
+- Updated `__main__.py` and console script entry point to use `main:main`
+- Config resolution uses `importlib.resources` with env var fallback
+- Added explicit `encoding="utf-8"` to `open()` call in `config.py` (PEP 8)
+- Removed trailing blank lines from `server.py` (PEP 8)
+- Updated README with server running instructions and config documentation
+
 ## [0.2.3] - 2026-02-24
 
 ### Added

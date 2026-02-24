@@ -1,6 +1,6 @@
 [project]
 name = "calculator-mcp"
-version = "0.2.3"
+version = "0.2.4"
 description = "A calculator MCP server"
 authors = [
     {name = "Rubens Gomes",email = "rubens.s.gomes@gmail.com"}
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-calculator-mcp = "calculator_mcp.server:main"
+calculator-mcp = "calculator_mcp.main:main"
 
 [project.urls]
 Homepage = "https://github.com/rubensgomes/calculator-mcp/"

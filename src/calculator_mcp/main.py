@@ -35,6 +35,34 @@
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
-from calculator_mcp.main import main
+import logging
+import signal
+import sys
 
-main()
+from calculator_mcp.config import get_host, get_port, get_transport
+from calculator_mcp.server import mcp
+
+logger = logging.getLogger(__name__)
+
+
+def _shutdown_handler(signum, _frame):
+    """Handle shutdown signals for graceful termination."""
+    sig_name = signal.Signals(signum).name
+    logger.info("Received %s, shutting down gracefully", sig_name)
+    sys.exit(0)
+
+
+def main():
+    """Entry point for the calculator-mcp application."""
+    signal.signal(signal.SIGINT, _shutdown_handler)
+    signal.signal(signal.SIGTERM, _shutdown_handler)
+
+    transport = get_transport()
+    if transport == "http":
+        mcp.run(transport="http", host=get_host(), port=get_port())
+    else:
+        mcp.run(transport="stdio")
+
+
+if __name__ == "__main__":
+    main()

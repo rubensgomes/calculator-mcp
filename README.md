@@ -28,7 +28,18 @@ poetry install
 
 ## Configuration
 
-Edit `config.yaml` in the project root:
+The server ships with a default `config.yaml` bundled inside the package.
+To override it, set the `CALCULATOR_MCP_CONFIG` environment variable to
+the absolute path of your custom configuration file:
+
+```bash
+export CALCULATOR_MCP_CONFIG=/path/to/your/config.yaml
+```
+
+When `CALCULATOR_MCP_CONFIG` is not set, the bundled default is used
+automatically.
+
+The configuration file has two sections:
 
 ```yaml
 server:
@@ -38,14 +49,32 @@ server:
   timeout: 10           # Tool execution timeout in seconds
 ```
 
-The `logging` section in `config.yaml` controls Python logging via `dictConfig`.
+The `logging` section controls Python logging via `dictConfig`.
 The default configuration logs `calculator_mcp` messages at `INFO` level to
 stderr.
 
-## Usage
+## Running the Server
 
-The server can be started using the FastMCP CLI or integrated into any
-MCP-compatible client.
+There are three ways to start the server:
+
+**Console script** (installed by Poetry):
+
+```bash
+calculator-mcp
+```
+
+**As a Python module:**
+
+```bash
+python -m calculator_mcp
+```
+
+**With a custom configuration:**
+
+```bash
+export CALCULATOR_MCP_CONFIG=/path/to/your/config.yaml
+calculator-mcp
+```
 
 ## Development
 
@@ -67,34 +96,17 @@ poetry run isort src tests
 poetry run mypy src/calculator_mcp
 ```
 
-## Install and Run the Server
-
-### Prerequisites
-
-- git version 2.43.0+
-- python 3.14+
-- Poetry 2.2+
-
-### Running the Server
-
-- To start the server, run:
-
-    ```bash
-    git clone https://github.com/rubensworks/calculator-mcp.git
-    cd calculator-mcp 
-    poetry install
-    poetry run calculator_mcp
-    ```
-
 ## Project Structure
 
 ```
 calculator-mcp/
-├── config.yaml                    # Runtime config (transport, logging)
 ├── pyproject.toml                 # Project metadata, dependencies, tool config
 ├── src/calculator_mcp/
 │   ├── __init__.py
+│   ├── __main__.py                # python -m calculator_mcp entry point
 │   ├── config.py                  # Loads config.yaml, configures logging
+│   ├── config.yaml                # Bundled default runtime config
+│   ├── main.py                    # CLI entry point, signal handling
 │   └── server.py                  # FastMCP server with 16 @mcp.tool functions
 └── tests/
     ├── __init__.py

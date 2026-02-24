@@ -37,16 +37,32 @@
 
 import logging
 import logging.config
+import os
+from importlib.resources import files
 from pathlib import Path
 
 import yaml
 
-_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent / "config.yaml"
+
+def _resolve_config_path() -> Path:
+    """Return the config.yaml path.
+
+    Uses the ``CALCULATOR_MCP_CONFIG`` environment variable when set;
+    otherwise falls back to the ``config.yaml`` bundled inside the
+    installed package.
+    """
+    env_path = os.environ.get("CALCULATOR_MCP_CONFIG")
+    if env_path:
+        return Path(env_path)
+    return Path(str(files("calculator_mcp").joinpath("config.yaml")))
+
+
+_CONFIG_PATH = _resolve_config_path()
 
 
 def _load_config() -> dict:
     """Load and return the full config.yaml as a dict."""
-    with open(_CONFIG_PATH) as f:
+    with open(_CONFIG_PATH, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
