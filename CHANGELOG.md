@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-02-24
+
+### Added
+
+- `client.py` MCP client module with `create_client()`, `run_client()`, and `main()` entry point
+- Config-driven transport selection (HTTP or stdio) reusing the server config section
+- Sample tool invocation for all 16 tools with result printing
+- Client-side debug loggers in `config.yaml`: `mcp.client.streamable_http`, `httpx`, `httpcore`
+- Server-side debug loggers in `config.yaml`: `mcp.server.lowlevel.server`, `mcp.server.streamable_http`, `mcp.server.streamable_http_manager`, `uvicorn.access`
+
+### Removed
+
+- Root-level `config.yaml` (replaced by bundled `src/calculator_mcp/config.yaml`)
+
 ## [0.2.4] - 2026-02-24
 
 ### Added

@@ -1,6 +1,6 @@
 [project]
 name = "calculator-mcp"
-version = "0.2.4"
+version = "0.2.5"
 description = "A calculator MCP server"
 authors = [
     {name = "Rubens Gomes",email = "rubens.s.gomes@gmail.com"}
