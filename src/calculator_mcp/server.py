@@ -36,6 +36,8 @@
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
 import logging
+import signal
+import sys
 from importlib.metadata import version
 
 from calculator_lib import Calculator
@@ -294,9 +296,24 @@ def round_number(a: float, decimals: int = 0) -> float:
     return _calc.round_number(a, decimals)
 
 
-if __name__ == "__main__":
+def _shutdown_handler(signum, _frame):
+    """Handle shutdown signals for graceful termination."""
+    sig_name = signal.Signals(signum).name
+    logger.info("Received %s, shutting down gracefully", sig_name)
+    sys.exit(0)
+
+
+def main():
+    """Entry point for the calculator-mcp application."""
+    signal.signal(signal.SIGINT, _shutdown_handler)
+    signal.signal(signal.SIGTERM, _shutdown_handler)
+
     transport = get_transport()
     if transport == "http":
         mcp.run(transport="http", host=get_host(), port=get_port())
     else:
         mcp.run(transport="stdio")
+
+
+if __name__ == "__main__":
+    main()

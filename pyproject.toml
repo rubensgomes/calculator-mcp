@@ -1,6 +1,6 @@
 [project]
 name = "calculator-mcp"
-version = "0.2.2"
+version = "0.2.3"
 description = "A calculator MCP server"
 authors = [
     {name = "Rubens Gomes",email = "rubens.s.gomes@gmail.com"}
@@ -12,6 +12,9 @@ dependencies = [
     "pyyaml>=6.0.3,<7.0.0",
     "calculator-lib-rubens (>=0.1.4,<0.2.0)",
 ]
+
+[project.scripts]
+calculator-mcp = "calculator_mcp.server:main"
 
 [project.urls]
 Homepage = "https://github.com/rubensgomes/calculator-mcp/"

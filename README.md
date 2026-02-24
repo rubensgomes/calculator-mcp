@@ -67,6 +67,25 @@ poetry run isort src tests
 poetry run mypy src/calculator_mcp
 ```
 
+## Install and Run the Server
+
+### Prerequisites
+
+- git version 2.43.0+
+- python 3.14+
+- Poetry 2.2+
+
+### Running the Server
+
+- To start the server, run:
+
+    ```bash
+    git clone https://github.com/rubensworks/calculator-mcp.git
+    cd calculator-mcp 
+    poetry install
+    poetry run calculator_mcp
+    ```
+
 ## Project Structure
 
 ```

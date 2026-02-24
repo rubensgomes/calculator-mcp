@@ -176,6 +176,7 @@ poetry add --dev black
 poetry add --dev coverage
 poetry add --dev isort
 poetry add --dev mypy
+poetry add --dev pipx
 poetry add --dev pytest-asyncio
 poetry add --dev pytest-cov
 poetry add --dev pylint
@@ -350,3 +351,9 @@ Once the above "Edit Configurations in PyCharm" are configure:
     - git push -u origin main
 
 After previous steps go to GitHub remote repo and create a "release" branch.
+
+## Deploy MCP Server
+
+- For more information: <https://docs.prefect.io/v3/get-started>
+
+1. Login to <https://www.prefect.io/horizon> using GitHub credentials.

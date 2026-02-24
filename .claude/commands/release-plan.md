@@ -21,4 +21,3 @@ argument-hint: Git repository name (e.g., rubensgomes/calculator-mcp)
     - MUST commit all changes to main, create a new version tag, push, and create a GitHub release
 5. MUST save the release plan in the project's docs folder
 6. MUST mark off checkboxes as steps in the plan are completed
-7. Upon completion of release plan, request user's approval

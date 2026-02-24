@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-02-24
+
+### Added
+
+- Signal handler for graceful shutdown (SIGINT/SIGTERM) with logging in `server.py`
+- `__main__.py` module entry point for `python -m calculator_mcp` invocation
+- Console script `calculator-mcp` entry point in `pyproject.toml`
+- "Install and Run the Server" section in `README.md`
+
 ## [0.2.2] - 2026-02-23
 
 ### Changed
