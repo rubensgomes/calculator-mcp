@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-02-23
+
+### Changed
+
+- Broadened Python version requirement from `>=3.14` to `>=3.10.0`
+- Bumped `calculator-lib-rubens` minimum version from `0.1.2` to `0.1.4`
+- Changed default MCP transport in `config.yaml` from `stdio` to `http`
+- Updated `poetry.lock`
+
 ## [0.2.1] - 2026-02-20
 
 ### Changed

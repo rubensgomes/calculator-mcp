@@ -1,16 +1,16 @@
 [project]
 name = "calculator-mcp"
-version = "0.2.1"
+version = "0.2.2"
 description = "A calculator MCP server"
 authors = [
     {name = "Rubens Gomes",email = "rubens.s.gomes@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.14,<4.0.0"
+requires-python = ">=3.10.0,<4.0.0"
 dependencies = [
     "fastmcp>=3.0.0rc1",
     "pyyaml>=6.0.3,<7.0.0",
-    "calculator-lib-rubens (>=0.1.2,<0.2.0)",
+    "calculator-lib-rubens (>=0.1.4,<0.2.0)",
 ]
 
 [project.urls]

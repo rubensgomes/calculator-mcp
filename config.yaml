@@ -3,7 +3,7 @@
 # =============================================================================
 server:
   # MCP transport: "stdio" or "http"
-  transport: "stdio"
+  transport: "http"
   # Host IP address for the HTTP/MCP server
   host: "127.0.0.1"
   # Port for the HTTP/MCP server
