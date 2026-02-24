@@ -19,7 +19,7 @@ version requirement to `>=3.10.0`, bumped `calculator-lib-rubens` minimum to
 - [x] Ensure `CHANGELOG.md` exists and is up to date
 - [x] Update `CHANGELOG.md` with v0.2.2 release changes
 - [x] Bump version in `pyproject.toml` to `0.2.2`
-- [ ] Commit all changes to main, create tag `v0.2.2`, push, and create GitHub release
+- [x] Commit all changes to main, create tag `v0.2.2`, push, and create GitHub release
 
 ## Changes in This Release
 
