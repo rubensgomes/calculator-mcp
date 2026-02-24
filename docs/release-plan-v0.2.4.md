@@ -22,7 +22,7 @@ README documentation.
 - [x] Ensure `CHANGELOG.md` exists and is up to date
 - [x] Update `CHANGELOG.md` with v0.2.4 release changes
 - [x] Bump version in `pyproject.toml` to `0.2.4`
-- [ ] Commit all changes to main, create tag `v0.2.4`, push, and create GitHub release
+- [x] Commit all changes to main, create tag `v0.2.4`, push, and create GitHub release
 
 ## Changes in This Release
 
