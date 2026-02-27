@@ -17,8 +17,9 @@
 #
 # **Copyright Status Statement**
 #
-# Copyright protection, if any, is limited to the original human contributions and
-# modifications made to this project. The AI-generated portions of the code and
+# Copyright protection, if any, is limited to the original human contributions
+# and modifications made to this project. The AI-generated portions of the code
+# and
 # documentation are not subject to copyright and are considered to be in the
 # public domain.
 #
@@ -34,6 +35,8 @@
 # THIS SOFTWARE IS PROVIDED 'AS IS,' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+"""Integration tests for calculator MCP server tools."""
 
 import pytest
 from fastmcp import Client
@@ -142,7 +145,9 @@ async def test_exp():
 
 async def test_round_number():
     async with Client(mcp) as client:
-        result = await client.call_tool("round_number", {"a": 3.14159, "decimals": 2})
+        result = await client.call_tool(
+            "round_number", {"a": 3.14159, "decimals": 2}
+        )
     assert result.data == 3.14
 
 

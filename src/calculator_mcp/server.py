@@ -17,8 +17,9 @@
 #
 # **Copyright Status Statement**
 #
-# Copyright protection, if any, is limited to the original human contributions and
-# modifications made to this project. The AI-generated portions of the code and
+# Copyright protection, if any, is limited to the original
+# human contributions and modifications made to this project.
+# The AI-generated portions of the code and
 # documentation are not subject to copyright and are considered to be in the
 # public domain.
 #
@@ -34,6 +35,8 @@
 # THIS SOFTWARE IS PROVIDED 'AS IS,' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+"""FastMCP server exposing calculator operations as tools."""
 
 import logging
 from importlib.metadata import version
@@ -70,7 +73,15 @@ logger.info("Initialized Calculator MCP Server")
     },
 )
 def add(a: float, b: float) -> float:
-    """Return the sum of two numbers."""
+    """Return the sum of two numbers.
+
+    Args:
+        a: The first addend.
+        b: The second addend.
+
+    Returns:
+        The sum a + b.
+    """
     logger.info("add called with a=%s, b=%s", a, b)
     return _calc.add(a, b)
 
@@ -84,7 +95,15 @@ def add(a: float, b: float) -> float:
     },
 )
 def subtract(a: float, b: float) -> float:
-    """Return the difference of two numbers."""
+    """Return the difference of two numbers.
+
+    Args:
+        a: The minuend.
+        b: The subtrahend.
+
+    Returns:
+        The difference a - b.
+    """
     logger.info("subtract called with a=%s, b=%s", a, b)
     return _calc.subtract(a, b)
 
@@ -98,7 +117,15 @@ def subtract(a: float, b: float) -> float:
     },
 )
 def multiply(a: float, b: float) -> float:
-    """Return the product of two numbers."""
+    """Return the product of two numbers.
+
+    Args:
+        a: The first factor.
+        b: The second factor.
+
+    Returns:
+        The product a * b.
+    """
     logger.info("multiply called with a=%s, b=%s", a, b)
     return _calc.multiply(a, b)
 
@@ -114,7 +141,15 @@ def multiply(a: float, b: float) -> float:
 def divide(a: float, b: float) -> float:
     """Return the quotient of two numbers.
 
-    Raises ValueError on division by zero.
+    Args:
+        a: The dividend.
+        b: The divisor.
+
+    Returns:
+        The quotient a / b.
+
+    Raises:
+        ValueError: If b is zero.
     """
     logger.info("divide called with a=%s, b=%s", a, b)
     return _calc.divide(a, b)
@@ -129,7 +164,15 @@ def divide(a: float, b: float) -> float:
     },
 )
 def power(a: float, b: float) -> float:
-    """Return a raised to the power b."""
+    """Return a raised to the power b.
+
+    Args:
+        a: The base.
+        b: The exponent.
+
+    Returns:
+        The result of a ** b.
+    """
     logger.info("power called with a=%s, b=%s", a, b)
     return _calc.power(a, b)
 
@@ -143,7 +186,18 @@ def power(a: float, b: float) -> float:
     },
 )
 def nth_root(a: float, b: float) -> float:
-    """Return the b-th root of a. Raises ValueError on invalid input."""
+    """Return the b-th root of a.
+
+    Args:
+        a: The radicand.
+        b: The degree of the root.
+
+    Returns:
+        The b-th root of a.
+
+    Raises:
+        ValueError: If the input is invalid (e.g. even root of negative).
+    """
     logger.info("nth_root called with a=%s, b=%s", a, b)
     return _calc.nth_root(a, b)
 
@@ -157,7 +211,18 @@ def nth_root(a: float, b: float) -> float:
     },
 )
 def modulo(a: float, b: float) -> float:
-    """Return a mod b. Raises ValueError on modulo by zero."""
+    """Return a mod b.
+
+    Args:
+        a: The dividend.
+        b: The divisor.
+
+    Returns:
+        The remainder of a / b.
+
+    Raises:
+        ValueError: If b is zero.
+    """
     logger.info("modulo called with a=%s, b=%s", a, b)
     return _calc.modulo(a, b)
 
@@ -171,7 +236,18 @@ def modulo(a: float, b: float) -> float:
     },
 )
 def floor_divide(a: float, b: float) -> float:
-    """Return the floor division of a by b. Raises ValueError on division by zero."""
+    """Return floor division of a by b.
+
+    Args:
+        a: The dividend.
+        b: The divisor.
+
+    Returns:
+        The floor of a / b.
+
+    Raises:
+        ValueError: If b is zero.
+    """
     logger.info("floor_divide called with a=%s, b=%s", a, b)
     return _calc.floor_divide(a, b)
 
@@ -188,7 +264,17 @@ def floor_divide(a: float, b: float) -> float:
     },
 )
 def sqrt(a: float) -> float:
-    """Return the square root. Raises ValueError on negative input."""
+    """Return the square root.
+
+    Args:
+        a: The value to take the square root of.
+
+    Returns:
+        The square root of a.
+
+    Raises:
+        ValueError: If a is negative.
+    """
     logger.info("sqrt called with a=%s", a)
     return _calc.sqrt(a)
 
@@ -202,7 +288,14 @@ def sqrt(a: float) -> float:
     },
 )
 def absolute(a: float) -> float:
-    """Return the absolute value."""
+    """Return the absolute value.
+
+    Args:
+        a: The input value.
+
+    Returns:
+        The absolute value of a.
+    """
     logger.info("absolute called with a=%s", a)
     return _calc.absolute(a)
 
@@ -216,7 +309,14 @@ def absolute(a: float) -> float:
     },
 )
 def floor(a: float) -> float:
-    """Return the floor of a."""
+    """Return the floor of a.
+
+    Args:
+        a: The input value.
+
+    Returns:
+        The largest integer less than or equal to a.
+    """
     logger.info("floor called with a=%s", a)
     return _calc.floor(a)
 
@@ -230,7 +330,14 @@ def floor(a: float) -> float:
     },
 )
 def ceil(a: float) -> float:
-    """Return the ceiling of a."""
+    """Return the ceiling of a.
+
+    Args:
+        a: The input value.
+
+    Returns:
+        The smallest integer greater than or equal to a.
+    """
     logger.info("ceil called with a=%s", a)
     return _calc.ceil(a)
 
@@ -244,7 +351,17 @@ def ceil(a: float) -> float:
     },
 )
 def log10(a: float) -> float:
-    """Return the base-10 logarithm. Raises ValueError on non-positive input."""
+    """Return the base-10 logarithm.
+
+    Args:
+        a: The input value.
+
+    Returns:
+        The base-10 logarithm of a.
+
+    Raises:
+        ValueError: If a is not positive.
+    """
     logger.info("log10 called with a=%s", a)
     return _calc.log10(a)
 
@@ -258,7 +375,17 @@ def log10(a: float) -> float:
     },
 )
 def ln(a: float) -> float:
-    """Return the natural logarithm. Raises ValueError on non-positive input."""
+    """Return the natural logarithm.
+
+    Args:
+        a: The input value.
+
+    Returns:
+        The natural logarithm of a.
+
+    Raises:
+        ValueError: If a is not positive.
+    """
     logger.info("ln called with a=%s", a)
     return _calc.ln(a)
 
@@ -272,7 +399,14 @@ def ln(a: float) -> float:
     },
 )
 def exp(a: float) -> float:
-    """Return e raised to the power a."""
+    """Return e raised to the power a.
+
+    Args:
+        a: The exponent.
+
+    Returns:
+        The value of e ** a.
+    """
     logger.info("exp called with a=%s", a)
     return _calc.exp(a)
 
@@ -289,6 +423,14 @@ def exp(a: float) -> float:
     },
 )
 def round_number(a: float, decimals: int = 0) -> float:
-    """Return a rounded to the given number of decimal places."""
+    """Return a rounded to the given number of decimal places.
+
+    Args:
+        a: The value to round.
+        decimals: The number of decimal places. Defaults to 0.
+
+    Returns:
+        The rounded value.
+    """
     logger.info("round_number called with a=%s, decimals=%s", a, decimals)
     return _calc.round_number(a, decimals)

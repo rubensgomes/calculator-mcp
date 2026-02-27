@@ -76,6 +76,14 @@ export CALCULATOR_MCP_CONFIG=/path/to/your/config.yaml
 calculator-mcp
 ```
 
+## Style Guide
+
+This project follows the
+[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
+All docstrings use the Google format with `Args:`, `Returns:`, and `Raises:`
+sections where applicable. Compliance is enforced via pylint, black, isort,
+and mypy.
+
 ## Development
 
 ```bash

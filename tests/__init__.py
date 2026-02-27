@@ -17,8 +17,9 @@
 #
 # **Copyright Status Statement**
 #
-# Copyright protection, if any, is limited to the original human contributions and
-# modifications made to this project. The AI-generated portions of the code and
+# Copyright protection, if any, is limited to the original human contributions
+# and modifications made to this project. The AI-generated portions of the code
+# and
 # documentation are not subject to copyright and are considered to be in the
 # public domain.
 #
@@ -34,3 +35,5 @@
 # THIS SOFTWARE IS PROVIDED 'AS IS,' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+"""Test suite for calculator_mcp."""

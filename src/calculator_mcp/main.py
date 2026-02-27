@@ -17,8 +17,9 @@
 #
 # **Copyright Status Statement**
 #
-# Copyright protection, if any, is limited to the original human contributions and
-# modifications made to this project. The AI-generated portions of the code and
+# Copyright protection, if any, is limited to the original
+# human contributions and modifications made to this project.
+# The AI-generated portions of the code and
 # documentation are not subject to copyright and are considered to be in the
 # public domain.
 #
@@ -35,9 +36,12 @@
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
+"""CLI entry point for the calculator-mcp server."""
+
 import logging
 import signal
 import sys
+import types
 
 from calculator_mcp.config import get_host, get_port, get_transport
 from calculator_mcp.server import mcp
@@ -45,14 +49,22 @@ from calculator_mcp.server import mcp
 logger = logging.getLogger(__name__)
 
 
-def _shutdown_handler(signum, _frame):
-    """Handle shutdown signals for graceful termination."""
+def _shutdown_handler(
+    signum: int,
+    frame: types.FrameType | None,  # pylint: disable=unused-argument
+) -> None:
+    """Handle shutdown signals for graceful termination.
+
+    Args:
+        signum: The signal number received.
+        frame: The current stack frame (unused).
+    """
     sig_name = signal.Signals(signum).name
     logger.info("Received %s, shutting down gracefully", sig_name)
     sys.exit(0)
 
 
-def main():
+def main() -> None:
     """Entry point for the calculator-mcp application."""
     signal.signal(signal.SIGINT, _shutdown_handler)
     signal.signal(signal.SIGTERM, _shutdown_handler)

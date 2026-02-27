@@ -17,8 +17,9 @@
 #
 # **Copyright Status Statement**
 #
-# Copyright protection, if any, is limited to the original human contributions and
-# modifications made to this project. The AI-generated portions of the code and
+# Copyright protection, if any, is limited to the original
+# human contributions and modifications made to this project.
+# The AI-generated portions of the code and
 # documentation are not subject to copyright and are considered to be in the
 # public domain.
 #
@@ -35,6 +36,8 @@
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
+"""MCP client that connects to the calculator server."""
+
 import asyncio
 import logging
 
@@ -48,8 +51,9 @@ logger = logging.getLogger(__name__)
 def create_client() -> Client:
     """Create and return an MCP Client based on config.yaml settings.
 
-    Returns a ``fastmcp.Client`` configured for either HTTP or stdio
-    transport, depending on the ``client.transport`` value in config.yaml.
+    Returns:
+        A ``fastmcp.Client`` configured for either HTTP or stdio transport,
+        depending on the ``client.transport`` value in config.yaml.
     """
     transport = get_transport()
     host = get_host()

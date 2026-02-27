@@ -17,8 +17,9 @@
 #
 # **Copyright Status Statement**
 #
-# Copyright protection, if any, is limited to the original human contributions and
-# modifications made to this project. The AI-generated portions of the code and
+# Copyright protection, if any, is limited to the original
+# human contributions and modifications made to this project.
+# The AI-generated portions of the code and
 # documentation are not subject to copyright and are considered to be in the
 # public domain.
 #
@@ -35,6 +36,8 @@
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
+"""Configuration helpers — loads config.yaml and configures logging."""
+
 import logging
 import logging.config
 import os
@@ -50,6 +53,9 @@ def _resolve_config_path() -> Path:
     Uses the ``CALCULATOR_MCP_CONFIG`` environment variable when set;
     otherwise falls back to the ``config.yaml`` bundled inside the
     installed package.
+
+    Returns:
+        The resolved path to config.yaml.
     """
     env_path = os.environ.get("CALCULATOR_MCP_CONFIG")
     if env_path:
@@ -61,7 +67,11 @@ _CONFIG_PATH = _resolve_config_path()
 
 
 def _load_config() -> dict:
-    """Load and return the full config.yaml as a dict."""
+    """Load and return the full config.yaml as a dict.
+
+    Returns:
+        The parsed YAML configuration.
+    """
     with open(_CONFIG_PATH, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
@@ -78,7 +88,11 @@ logger = logging.getLogger(__name__)
 
 
 def get_timeout() -> int:
-    """Return the HTTP client timeout (seconds) from config.yaml."""
+    """Return the HTTP client timeout (seconds) from config.yaml.
+
+    Returns:
+        The timeout in seconds.
+    """
     config = _load_config()
     timeout: int = config["server"]["timeout"]
     logger.info("HTTP client timeout: %s seconds", timeout)
@@ -86,7 +100,11 @@ def get_timeout() -> int:
 
 
 def get_transport() -> str:
-    """Return the MCP transport type ('stdio' or 'http') from config.yaml."""
+    """Return the MCP transport type ('stdio' or 'http') from config.yaml.
+
+    Returns:
+        The transport type string.
+    """
     config = _load_config()
     transport: str = config["server"]["transport"]
     logger.info("MCP transport: %s", transport)
@@ -94,7 +112,11 @@ def get_transport() -> str:
 
 
 def get_host() -> str:
-    """Return the HTTP/MCP server host address from config.yaml."""
+    """Return the HTTP/MCP server host address from config.yaml.
+
+    Returns:
+        The host address string.
+    """
     config = _load_config()
     host: str = config["server"]["host"]
     logger.info("MCP host: %s", host)
@@ -102,7 +124,11 @@ def get_host() -> str:
 
 
 def get_port() -> int:
-    """Return the HTTP/MCP server port from config.yaml."""
+    """Return the HTTP/MCP server port from config.yaml.
+
+    Returns:
+        The port number.
+    """
     config = _load_config()
     port: int = config["server"]["port"]
     logger.info("MCP port: %s", port)

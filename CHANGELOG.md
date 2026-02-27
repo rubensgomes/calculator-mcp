@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-02-26
+
+### Changed
+
+- Adopted the Google Python Style Guide across the codebase
+- Converted all docstrings to Google format with `Args:`, `Returns:`, and `Raises:` sections
+- Added module docstrings to `__init__.py`, `tests/__init__.py`, and `tests/test_server.py`
+- Added type annotations to `_shutdown_handler()` and `main()` in `main.py`
+- Wrapped `asyncio.run(main())` in `todo.py` with `if __name__ == "__main__":` guard
+- Fixed long lines in `tests/__init__.py` and `tests/test_server.py`
+- Added Google Python Style Guide reference to `README.md` and `CLAUDE.md`
+- Configured `[tool.black]` and `[tool.isort]` in `pyproject.toml` with `line-length = 80` to match pylint
+
 ## [0.2.5] - 2026-02-24
 
 ### Added

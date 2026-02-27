@@ -49,6 +49,8 @@ calculator-mcp/
 
 ## Conventions
 
+- Follow the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
+- Use Google-style docstrings with `Args:`, `Returns:`, and `Raises:` sections where applicable.
 - All Python source files must include the AI-generated content disclaimer header comment at the top.
 - Use `logging.getLogger(__name__)` for per-module loggers.
 - Tool functions log at INFO level on entry.

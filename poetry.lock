@@ -231,14 +231,14 @@ develop = ["aiomisc-pytest", "coveralls", "pylama[toml]", "pytest", "pytest-cov"
 
 [[package]]
 name = "calculator-lib-rubens"
-version = "0.1.4"
+version = "0.1.5"
 description = "A python calculator library."
 optional = false
 python-versions = ">=3.10.0"
 groups = ["main"]
 files = [
-    {file = "calculator_lib_rubens-0.1.4-py3-none-any.whl", hash = "sha256:09e1063ad22b066312fdc8eca3511843788fb43d2616b9a40deb4781a58a8460"},
-    {file = "calculator_lib_rubens-0.1.4.tar.gz", hash = "sha256:d5c5bdad2f6370177d57c6cb397b10ddb4f7f391ed7acd1fe2e3d0219587a2dc"},
+    {file = "calculator_lib_rubens-0.1.5-py3-none-any.whl", hash = "sha256:562e4ed09313ca4bf04e0802d7a2f963610356d665d4a246f8eeb05482a40833"},
+    {file = "calculator_lib_rubens-0.1.5.tar.gz", hash = "sha256:b871e94774acf7dcaf82d84a7a8b91203a9293347b9089256851e39df8e3ba45"},
 ]
 
 [[package]]
@@ -2605,4 +2605,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<4.0.0"
-content-hash = "0039dc8ef2fae0a539db9af1005025f2ecbb7a6db7172ef5803a87caffe9e426"
+content-hash = "b55dfbcfaae9a453790cb33adda5fbcc6f134515f4d75baadb5bbccd8cd3be04"
