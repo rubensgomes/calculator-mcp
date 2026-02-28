@@ -133,3 +133,15 @@ def get_port() -> int:
     port: int = config["server"]["port"]
     logger.info("MCP port: %s", port)
     return port
+
+
+def get_url() -> str:
+    """Return the client URL for HTTP transport from config.yaml.
+
+    Returns:
+        The client URL string.
+    """
+    config = _load_config()
+    url: str = config["client"]["url"]
+    logger.info("MCP client URL: %s", url)
+    return url

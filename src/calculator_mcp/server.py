@@ -43,6 +43,8 @@ from importlib.metadata import version
 
 from calculator_lib import Calculator
 from fastmcp import FastMCP
+from starlette.requests import Request
+from starlette.responses import PlainTextResponse
 
 from calculator_mcp.config import get_timeout
 
@@ -56,9 +58,33 @@ _calc = Calculator()
 mcp = FastMCP(
     "Calculator MCP Server",
     version=version("calculator-mcp"),
+    instructions=(
+        "This server provides 16 calculator operations as tools. "
+        "Use add, subtract, multiply, divide, power, nth_root, modulo, "
+        "and floor_divide for two-operand arithmetic. "
+        "Use sqrt, absolute, floor, ceil, log10, ln, and exp for "
+        "single-operand operations. "
+        "Use round_number to round a value to a given number of decimals. "
+        "All inputs are floats; division, modulo, and floor_divide raise "
+        "ValueError when the divisor is zero."
+    ),
     website_url=_HOMEPAGE,
 )
 logger.info("Initialized Calculator MCP Server")
+
+
+@mcp.custom_route("/health", methods=["GET"])
+async def health_check(request: Request) -> PlainTextResponse:
+    """Return a plain-text health-check response.
+
+    Args:
+        request: The incoming HTTP request.
+
+    Returns:
+        A ``PlainTextResponse`` with body ``"OK"``.
+    """
+    logger.info("health_check called")
+    return PlainTextResponse("OK")
 
 
 # --- Two-operand tools ---

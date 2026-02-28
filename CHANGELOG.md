@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.7] - 2026-02-27
+
+### Added
+
+- `instructions` parameter on the FastMCP constructor describing all 16 tools
+- `/health` custom HTTP route returning plain-text `OK` with logging
+- `get_url()` config helper to read `client.url` from `config.yaml`
+- `client` section in `config.yaml` with the client URL for HTTP transport
+- Health check call (`_check_health()`) as the first step in `run_client()` for HTTP transport
+- `test_health_check` integration test using `httpx.ASGITransport`
+- "Running the Client" section in `README.md` with usage instructions
+
+### Changed
+
+- Replaced manual URL construction in `client.py` with `get_url()` from config
+- Replaced custom `_shutdown_handler` / `sys.exit(0)` in `main.py` with `try/except KeyboardInterrupt`, letting FastMCP handle its own signal cleanup
+
+### Removed
+
+- `_shutdown_handler()` function and `signal`, `sys`, `types` imports from `main.py`
+
 ## [0.2.6] - 2026-02-26
 
 ### Changed

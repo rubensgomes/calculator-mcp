@@ -39,9 +39,6 @@
 """CLI entry point for the calculator-mcp server."""
 
 import logging
-import signal
-import sys
-import types
 
 from calculator_mcp.config import get_host, get_port, get_transport
 from calculator_mcp.server import mcp
@@ -49,31 +46,16 @@ from calculator_mcp.server import mcp
 logger = logging.getLogger(__name__)
 
 
-def _shutdown_handler(
-    signum: int,
-    frame: types.FrameType | None,  # pylint: disable=unused-argument
-) -> None:
-    """Handle shutdown signals for graceful termination.
-
-    Args:
-        signum: The signal number received.
-        frame: The current stack frame (unused).
-    """
-    sig_name = signal.Signals(signum).name
-    logger.info("Received %s, shutting down gracefully", sig_name)
-    sys.exit(0)
-
-
 def main() -> None:
     """Entry point for the calculator-mcp application."""
-    signal.signal(signal.SIGINT, _shutdown_handler)
-    signal.signal(signal.SIGTERM, _shutdown_handler)
-
     transport = get_transport()
-    if transport == "http":
-        mcp.run(transport="http", host=get_host(), port=get_port())
-    else:
-        mcp.run(transport="stdio")
+    try:
+        if transport == "http":
+            mcp.run(transport="http", host=get_host(), port=get_port())
+        else:
+            mcp.run(transport="stdio")
+    except KeyboardInterrupt:
+        logger.info("Received SIGINT, shutting down gracefully")
 
 
 if __name__ == "__main__":

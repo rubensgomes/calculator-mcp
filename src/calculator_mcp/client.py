@@ -41,9 +41,10 @@
 import asyncio
 import logging
 
+import httpx
 from fastmcp import Client
 
-from calculator_mcp.config import get_host, get_port, get_transport
+from calculator_mcp.config import get_transport, get_url
 
 logger = logging.getLogger(__name__)
 
@@ -56,11 +57,9 @@ def create_client() -> Client:
         depending on the ``client.transport`` value in config.yaml.
     """
     transport = get_transport()
-    host = get_host()
-    port = get_port()
 
     if transport == "http":
-        url = f"http://{host}:{port}/mcp"
+        url = get_url()
         logger.info("Creating HTTP MCP client: %s", url)
         return Client(url)
 
@@ -88,8 +87,35 @@ _SAMPLE_ARGS: dict[str, dict[str, float | int]] = {
 }
 
 
+async def _check_health(base_url: str) -> None:
+    """Call the /health endpoint and verify the server is reachable.
+
+    Args:
+        base_url: The server base URL (e.g. ``http://127.0.0.1:9000``).
+
+    Raises:
+        RuntimeError: If the health check does not return 200 OK.
+    """
+    health_url = f"{base_url}/health"
+    logger.info("Health check: %s", health_url)
+    async with httpx.AsyncClient() as http_client:
+        response = await http_client.get(health_url)
+    if response.status_code != 200 or response.text != "OK":
+        raise RuntimeError(
+            f"Health check failed: {response.status_code} {response.text}"
+        )
+    logger.info("Health check passed")
+
+
 async def run_client() -> None:
     """Connect to the MCP server, list and call each tool."""
+    transport = get_transport()
+    if transport == "http":
+        url = get_url()
+        # Strip the /mcp path to get the base URL for the health endpoint.
+        base_url = url.rsplit("/mcp", 1)[0]
+        await _check_health(base_url)
+
     client = create_client()
     async with client:
         tools = await client.list_tools()

@@ -38,6 +38,7 @@
 
 """Integration tests for calculator MCP server tools."""
 
+import httpx
 import pytest
 from fastmcp import Client
 from fastmcp.exceptions import ToolError
@@ -159,3 +160,25 @@ async def test_divide_by_zero():
     async with Client(mcp) as client:
         with pytest.raises(ToolError):
             await client.call_tool("divide", {"a": 1, "b": 0})
+
+
+# --- Health check ---
+
+
+async def test_health_check():
+    """Test that the /health endpoint returns 200 OK.
+
+    ``mcp.http_app()`` builds the Starlette ASGI application that would
+    normally be served by uvicorn in production.  ``httpx.ASGITransport``
+    lets ``httpx.AsyncClient`` call that ASGI app directly in-process,
+    bypassing the network entirely.  This exercises the full HTTP stack
+    (routing, middleware, request parsing, response serialization) without
+    requiring a running server, an open port, or any network I/O.
+    """
+    transport = httpx.ASGITransport(app=mcp.http_app())
+    async with httpx.AsyncClient(
+        transport=transport, base_url="http://test"
+    ) as client:
+        response = await client.get("/health")
+    assert response.status_code == 200
+    assert response.text == "OK"

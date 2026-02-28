@@ -43,7 +43,7 @@ The configuration file has two sections:
 
 ```yaml
 server:
-  transport: "stdio"    # "stdio" or "http"
+  transport: "httpd"    # "stdio" or "http"
   host: "127.0.0.1"     # Host for HTTP transport
   port: 9000            # Port for HTTP transport
   timeout: 10           # Tool execution timeout in seconds
@@ -60,21 +60,56 @@ There are three ways to start the server:
 **Console script** (installed by Poetry):
 
 ```bash
-calculator-mcp
+# requires poetry to be installed
+poetry install # only needed once
+poetry run calculator-mcp
 ```
 
 **As a Python module:**
 
 ```bash
+# requires poetry to be installed
+poetry install # only needed once
+eval $(poetry env activate)
 python -m calculator_mcp
+deactivate
 ```
 
 **With a custom configuration:**
 
 ```bash
+# requires poetry to be installed
+poetry install # only needed once
 export CALCULATOR_MCP_CONFIG=/path/to/your/config.yaml
-calculator-mcp
+poetry run calculator-mcp
 ```
+
+## Running the Client
+
+A sample client is provided in `src/calculator_mcp/client.py` to demonstrate
+the MCP protocol with the server. It performs a health check (HTTP transport
+only), lists all available tools, and calls each one with sample arguments.
+
+**Important:** The server must be running before you start the client. See
+[Running the Server](#running-the-server) above.
+
+**Run the client directly:**
+
+```bash
+# requires poetry to be installed
+poetry install # only needed once
+eval $(poetry env activate)
+poetry run python -c "from calculator_mcp.client import main; main()"
+```
+
+**Run as a module (using the client's `__main__` block):**
+
+```bash
+eval $(poetry env activate)
+python src/calculator_mcp/client.py
+deactivate
+```
+
 
 ## Style Guide
 

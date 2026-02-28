@@ -3,13 +3,23 @@
 # =============================================================================
 server:
   # MCP transport: "stdio" or "http"
+  # http: for web services using the Streamable HTTP protocol
   transport: "http"
-  # Host IP address for the HTTP/MCP server
+  # Host IP address for the HTTP/MCP server, defaults to:
+  # 127.0.0.1 for localhost
   host: "127.0.0.1"
-  # Port for the HTTP/MCP server
+  # Port for the HTTP/MCP server, defaults to:
+  # port 8000
   port: 9000
   # timeout in seconds
   timeout: 10
+
+# =============================================================================
+# Client Configuration
+# =============================================================================
+client:
+    # the URL the client should use when the server transport is "http"
+    url: "http://127.0.0.1:9000/mcp"
 
 # =============================================================================
 # Logging Configuration
