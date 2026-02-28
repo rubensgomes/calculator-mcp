@@ -24,4 +24,4 @@
 - [x] Run `poetry run pytest` and fix any issues
 - [x] Run `export SOURCE_DATE_EPOCH=$(date +%s); poetry build -v` and fix any issues
 - [x] Ensure `CHANGELOG.md` exists and update it with v0.2.7 changes
-- [ ] Commit all changes to main, create tag `v0.2.7`, push, and create GitHub release
+- [x] Commit all changes to main, create tag `v0.2.7`, push, and create GitHub release
