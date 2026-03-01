@@ -19,4 +19,4 @@ requirement, and updates `SETUP.md` documentation.
 - [x] Ensure `CHANGELOG.md` exists in the project root
 - [x] Update `CHANGELOG.md` with the current release changes
 - [x] Bump version to 0.2.8
-- [ ] Commit all changes, create tag `v0.2.8`, push, and create GitHub release
+- [x] Commit all changes, create tag `v0.2.8`, push, and create GitHub release
