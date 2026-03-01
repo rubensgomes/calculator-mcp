@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.9] - 2026-03-01
+
+### Changed
+
+- Moved `mypy` back from standalone `pipx` install to Poetry dev dependency
+- Restructured `poethepoet` clean task into individual subtasks with a sequence combiner
+- Added `pylint` step to the release-plan slash command
+- Removed `mypy` from `SETUP.md` prerequisites and `pipx` install/upgrade lists
+- Added `mypy` to `SETUP.md` dev dependencies section
+- Suppressed `unused-argument` pylint warning on `health_check` route handler
+
 ## [0.2.8] - 2026-03-01
 
 ### Changed

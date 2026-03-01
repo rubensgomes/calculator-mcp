@@ -12,7 +12,6 @@ Ubuntu:
 - gh version 2.45.0+ (GitHub CLI tool)
 - git version 2.43.0+
 - isort 0.0.1+
-- mypy 1.19.1+
 - pip 25.3+
 - pipx 1.4.3+
 - poe 0.42.1+
@@ -103,7 +102,6 @@ Ubuntu:
 
     ```bash
     pipx install isort
-    pipx install mypy
     pipx install poethepoet
     pipx install poetry
     pipx install pylint
@@ -114,7 +112,6 @@ Ubuntu:
 
     ```bash
     pipx upgrade isort
-    pipx upgrade mypy
     pipx upgrade poetry
     pipx upgrade pylint
     pipx upgrade pytest
@@ -190,6 +187,7 @@ Ubuntu:
 ```bash
 poetry add --dev black
 poetry add --dev coverage
+poetry add --dev mypy
 poetry add --dev pytest-asyncio
 poetry add --dev pytest-cov
 poetry add --dev types-pyyaml

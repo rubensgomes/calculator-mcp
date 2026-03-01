@@ -14,6 +14,7 @@ argument-hint: Git repository name (e.g., rubensgomes/calculator-mcp)
     - MUST run `poetry run mypy src/` and fix any issues.
     - MUST run `poetry run isort src/ tests/` and fix any issues.
     - MUST run `poetry run black src/ tests/` and fix any issues.
+    - MUST run `poetry run pylint src/ tests/` and fix any issues.
     - MUST run `poetry run pytest` and fix any issues.
     - MUST run `export SOURCE_DATE_EPOCH=$(date +%s); poetry build -v` and fix any issues.
     - MUST ensure a `CHANGELOG.md` file exists in the project root folder.

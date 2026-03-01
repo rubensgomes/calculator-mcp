@@ -74,7 +74,9 @@ logger.info("Initialized Calculator MCP Server")
 
 
 @mcp.custom_route("/health", methods=["GET"])
-async def health_check(request: Request) -> PlainTextResponse:
+async def health_check(
+    request: Request,  # pylint: disable=unused-argument
+) -> PlainTextResponse:
     """Return a plain-text health-check response.
 
     Args:
