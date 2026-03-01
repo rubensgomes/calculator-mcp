@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.8] - 2026-03-01
+
+### Changed
+
+- Moved `isort`, `mypy`, `pylint`, and `pytest` from Poetry dev dependencies to standalone `pipx` installs
+- Reverted `poetry-core` build requirement from `>=2.3.2` to `>=2.3.1` (latest available)
+- Alphabetized prerequisites and sorted remaining dev dependencies in `pyproject.toml`
+- Updated `SETUP.md` prerequisites list and install instructions to include `isort`, `mypy`, and `poethepoet`
+
+### Added
+
+- `poethepoet` task runner with a `clean` task in `pyproject.toml`
+
+### Removed
+
+- `isort`, `mypy`, `pylint`, `pytest`, and `pipx` from Poetry dev dependency group
+
 ## [0.2.7] - 2026-02-27
 
 ### Added

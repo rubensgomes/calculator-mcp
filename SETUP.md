@@ -11,13 +11,16 @@ Ubuntu:
 - Claude Code 2.1.62+
 - gh version 2.45.0+ (GitHub CLI tool)
 - git version 2.43.0+
-- pyenv 2.6.23-5-g43e83b52+
-- python 3.14.3+
+- isort 0.0.1+
+- mypy 1.19.1+
 - pip 25.3+
 - pipx 1.4.3+
+- poe 0.42.1+
+- poetry 2.3.2+
+- pyenv 2.6.23-5-g43e83b52+
 - pylint 4.0.5+
 - pytest 9.0.2+
-- Poetry 2.3.2+
+- python 3.14.3+
 
 ## Installing Tools
 
@@ -94,11 +97,14 @@ Ubuntu:
     pipx --version
     ```
 
-### `poetry` `pylint` `pytest`
+### `poetry` `pylint` `pytest` ...
 
 - Install several required utilities:
 
     ```bash
+    pipx install isort
+    pipx install mypy
+    pipx install poethepoet
     pipx install poetry
     pipx install pylint
     pipx install pytest
@@ -107,9 +113,12 @@ Ubuntu:
 - Upgrade the packages installed using `pipx`:
 
     ```bash
+    pipx upgrade isort
+    pipx upgrade mypy
     pipx upgrade poetry
     pipx upgrade pylint
     pipx upgrade pytest
+    pipx upgrade poethepoet
     ```
 
 - Check the installed `poetry` version:
@@ -181,13 +190,8 @@ Ubuntu:
 ```bash
 poetry add --dev black
 poetry add --dev coverage
-poetry add --dev isort
-poetry add --dev mypy
-poetry add --dev pipx
 poetry add --dev pytest-asyncio
 poetry add --dev pytest-cov
-poetry add --dev pylint
-poetry add --dev pytest
 poetry add --dev types-pyyaml
 ```
 
