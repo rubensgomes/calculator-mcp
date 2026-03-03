@@ -35,4 +35,4 @@ workarounds, and add the `py-key-value-aio[disk]` dependency.
 - [x] Ensure `CHANGELOG.md` exists in the project root
 - [x] Update `CHANGELOG.md` with the current release changes
 - [x] Bump version to 0.2.11
-- [ ] Commit all changes, create tag `v0.2.11`, push, and create GitHub release
+- [x] Commit all changes, create tag `v0.2.11`, push, and create GitHub release
