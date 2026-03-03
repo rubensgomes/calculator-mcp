@@ -135,6 +135,18 @@ def get_port() -> int:
     return port
 
 
+def is_oauth() -> bool:
+    """Return whether OAuth is enabled from config.yaml.
+
+    Returns:
+        True if the client is_oauth setting is true, False otherwise.
+    """
+    config = _load_config()
+    oauth: bool = config["client"].get("is_oauth", False)
+    logger.info("OAuth enabled: %s", oauth)
+    return oauth
+
+
 def get_url() -> str:
     """Return the client URL for HTTP transport from config.yaml.
 

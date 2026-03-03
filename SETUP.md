@@ -298,6 +298,32 @@ environment to successfully run the following commands.
     poetry lock --regenerate -vv
     ```
 
+## Address ZScaler Certificates Issues
+
+If the HTTPs traffic (https://rubens-calculator-mcp.fastmcp.app) is going
+through Zscaler (a corporate proxy/security appliance) which is intercepting
+SSL connections and re-signing certificates with its own CA. Python's
+certificate bundle doesn't trust the Zscaler Root CA.
+
+1. Add the Zscaler root CA to your environment
+
+    ```bash
+    # Export the Zscaler root CA
+    openssl s_client -connect rubens-calculator-mcp.fastmcp.app:443 -showcerts </dev/null 2>/dev/null | awk '/Zscaler Root CA/,/END
+    CERTIFICATE/' > /tmp/zscaler-root.pem
+    
+    # Point Python/httpx to a combined CA bundle
+    export SSL_CERT_FILE=$(python -c "import certifi; print(certifi.where())")
+    cat /tmp/zscaler-root.pem >> "$SSL_CERT_FILE"
+    ```
+
+2. Or set SSL_CERT_FILE to your system's CA bundle if it already includes
+   Zscaler:
+
+    ```bash
+    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+    ```
+
 ## PyCharm IDE Development Environment
 
 - First, ensure to follow all the previous steps to "Setting Up Shell

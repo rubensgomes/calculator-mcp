@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.11] - 2026-03-03
+
+### Added
+
+- OAuth support in `client.py` via `fastmcp.client.auth.OAuth` with encrypted disk-based token storage
+- `is_oauth()` config helper in `config.py` to read `client.is_oauth` from `config.yaml`
+- `is_oauth` and `url` client settings in `config.yaml` for the hosted FastMCP endpoint
+- ZScaler certificate troubleshooting section in `SETUP.md`
+- `py-key-value-aio[disk]` project dependency in `pyproject.toml`
+
+### Changed
+
+- `.mcp.json` server URL updated to `https://rubens-calculator-mcp.fastmcp.app/mcp`
+- `client.py`: moved health check inside the `async with client:` block, added `client.ping()` before tool calls
+- `config.yaml`: default logging level for `calculator_mcp` changed from INFO to DEBUG
+
 ## [0.2.10] - 2026-03-02
 
 ### Added

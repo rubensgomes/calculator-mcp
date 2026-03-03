@@ -40,13 +40,20 @@
 
 import asyncio
 import logging
+import os
 
 import httpx
+from cryptography.fernet import Fernet
 from fastmcp import Client
+from fastmcp.client.auth import OAuth
+from key_value.aio.stores.disk import DiskStore
+from key_value.aio.wrappers.encryption import FernetEncryptionWrapper
 
-from calculator_mcp.config import get_transport, get_url
+from calculator_mcp.config import get_transport, get_url, is_oauth
 
 logger = logging.getLogger(__name__)
+
+_TOKEN_STORAGE_DIR = "~/.fastmcp/oauth-tokens"
 
 
 def create_client() -> Client:
@@ -61,6 +68,20 @@ def create_client() -> Client:
     if transport == "http":
         url = get_url()
         logger.info("Creating HTTP MCP client: %s", url)
+
+        if is_oauth():
+            logger.info("OAuth enabled, using OAuthClient")
+            logger.debug(
+                "Creating encrypted disk storage for OAuth tokens: %s",
+                _TOKEN_STORAGE_DIR,
+            )
+            encrypted_storage = FernetEncryptionWrapper(
+                key_value=DiskStore(directory=_TOKEN_STORAGE_DIR),
+                fernet=Fernet(os.environ["OAUTH_STORAGE_ENCRYPTION_KEY"]),
+            )
+            oauth = OAuth(token_storage=encrypted_storage)
+            return Client(url, auth=oauth)
+
         return Client(url)
 
     logger.info("Creating stdio MCP client")
@@ -109,15 +130,17 @@ async def _check_health(base_url: str) -> None:
 
 async def run_client() -> None:
     """Connect to the MCP server, list and call each tool."""
-    transport = get_transport()
-    if transport == "http":
-        url = get_url()
-        # Strip the /mcp path to get the base URL for the health endpoint.
-        base_url = url.rsplit("/mcp", 1)[0]
-        await _check_health(base_url)
-
     client = create_client()
     async with client:
+        await client.ping()
+        transport = get_transport()
+
+        if transport == "http":
+            url = get_url()
+            # Strip the /mcp path to get the base URL for the health endpoint.
+            base_url = url.rsplit("/mcp", 1)[0]
+            await _check_health(base_url)
+
         tools = await client.list_tools()
         print(f"Connected — {len(tools)} tools available:\n")
         for tool in tools:
