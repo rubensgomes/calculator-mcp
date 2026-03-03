@@ -43,10 +43,10 @@ The configuration file has two sections:
 
 ```yaml
 server:
-  transport: "httpd"    # "stdio" or "http"
-  host: "127.0.0.1"     # Host for HTTP transport
-  port: 9000            # Port for HTTP transport
-  timeout: 10           # Tool execution timeout in seconds
+    transport: "httpd"    # "stdio" or "http"
+    host: "127.0.0.1"     # Host for HTTP transport
+    port: 9000            # Port for HTTP transport
+    timeout: 10           # Tool execution timeout in seconds
 ```
 
 The `logging` section controls Python logging via `dictConfig`.
@@ -110,6 +110,19 @@ python src/calculator_mcp/client.py
 deactivate
 ```
 
+## Add MCP Server to Claude Code
+
+- Add the MCP server to Claude Code using project scope. The file `.mcp.json` is
+  added to the project root folder:
+
+    ```bash
+    # It is assumed that the MCP server is running on http://127.0.0.1:9000
+    cd $(git rev-parse --show-toplevel) || exit
+    claude mcp add \
+        --scope project \
+        --transport http \
+        calculator-mcp http://127.0.0.1:9000/mcp
+    ```
 
 ## Style Guide
 

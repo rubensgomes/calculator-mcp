@@ -9,6 +9,7 @@ Ubuntu:
 
 - Ubuntu Linux 24.04.3 LTS
 - Claude Code 2.1.62+
+- cookiecutter 2.6.0+
 - gh version 2.45.0+ (GitHub CLI tool)
 - git version 2.43.0+
 - isort 0.0.1+
@@ -20,6 +21,7 @@ Ubuntu:
 - pylint 4.0.5+
 - pytest 9.0.2+
 - python 3.14.3+
+- uv 0.10.7+
 
 ## Installing Tools
 
@@ -106,16 +108,20 @@ Ubuntu:
     pipx install poetry
     pipx install pylint
     pipx install pytest
+    pipx install uv
+    uv tool install cookiecutter
     ```
 
 - Upgrade the packages installed using `pipx`:
 
     ```bash
     pipx upgrade isort
+    pipx upgrade poethepoet
     pipx upgrade poetry
     pipx upgrade pylint
     pipx upgrade pytest
-    pipx upgrade poethepoet
+    pipx upgrade uv
+    uv tool upgrade cookiecutter
     ```
 
 - Check the installed `poetry` version:

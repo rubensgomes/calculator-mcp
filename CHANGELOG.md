@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.10] - 2026-03-02
+
+### Added
+
+- `.mcp.json` project-scope MCP server configuration for Claude Code
+- "Add MCP Server to Claude Code" section in `README.md` with setup instructions
+- `cookiecutter` and `uv` to `SETUP.md` prerequisites and `pipx`/`uv` install lists
+
+### Changed
+
+- Fixed YAML indentation in `README.md` configuration example
+- Updated `poetry.lock`
+
+### Removed
+
+- Disclaimer header from `tests/__init__.py`
+
 ## [0.2.9] - 2026-03-01
 
 ### Changed
