@@ -21,4 +21,4 @@ YAML indentation in the `README.md` config example, and updates `poetry.lock`.
 - [x] Ensure `CHANGELOG.md` exists in the project root
 - [x] Update `CHANGELOG.md` with the current release changes
 - [x] Bump version to 0.2.10
-- [ ] Commit all changes, create tag `v0.2.10`, push, and create GitHub release
+- [x] Commit all changes, create tag `v0.2.10`, push, and create GitHub release
