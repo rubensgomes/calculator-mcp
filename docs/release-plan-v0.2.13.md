@@ -30,4 +30,4 @@ module, and corrected config references.
 - [x] Run `export SOURCE_DATE_EPOCH=$(date +%s); poetry build -v` and fix any issues
 - [x] Ensure `CHANGELOG.md` exists
 - [x] Update `CHANGELOG.md` with current release changes
-- [ ] Commit all changes, create version tag, push, and create GitHub release
+- [x] Commit all changes, create version tag, push, and create GitHub release
