@@ -49,11 +49,15 @@ from fastmcp.client.auth import OAuth
 from key_value.aio.stores.disk import DiskStore
 from key_value.aio.wrappers.encryption import FernetEncryptionWrapper
 
-from calculator_mcp.config import get_transport, get_url, is_oauth
+from calculator_mcp.config import (
+    get_callback_port,
+    get_token_dir,
+    get_transport,
+    get_url,
+    is_oauth,
+)
 
 logger = logging.getLogger(__name__)
-
-_TOKEN_STORAGE_DIR = "~/.fastmcp/oauth-tokens"
 
 
 def create_client() -> Client:
@@ -71,15 +75,22 @@ def create_client() -> Client:
 
         if is_oauth():
             logger.info("OAuth enabled, using OAuthClient")
+            token_dir = get_token_dir()
             logger.debug(
                 "Creating encrypted disk storage for OAuth tokens: %s",
-                _TOKEN_STORAGE_DIR,
+                token_dir,
             )
             encrypted_storage = FernetEncryptionWrapper(
-                key_value=DiskStore(directory=_TOKEN_STORAGE_DIR),
+                key_value=DiskStore(directory=token_dir),
                 fernet=Fernet(os.environ["OAUTH_STORAGE_ENCRYPTION_KEY"]),
             )
-            oauth = OAuth(token_storage=encrypted_storage)
+            oauth = OAuth(
+                token_storage=encrypted_storage,
+                callback_port=get_callback_port(),
+                additional_client_metadata={
+                    "token_endpoint_auth_method": "client_secret_post",
+                },
+            )
             return Client(url, auth=oauth)
 
         return Client(url)
@@ -131,11 +142,12 @@ async def _check_health(base_url: str) -> None:
 async def run_client() -> None:
     """Connect to the MCP server, list and call each tool."""
     client = create_client()
+
     async with client:
         await client.ping()
         transport = get_transport()
 
-        if transport == "http":
+        if transport == "http" and not is_oauth():
             url = get_url()
             # Strip the /mcp path to get the base URL for the health endpoint.
             base_url = url.rsplit("/mcp", 1)[0]

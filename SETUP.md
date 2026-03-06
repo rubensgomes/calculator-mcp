@@ -324,6 +324,20 @@ certificate bundle doesn't trust the Zscaler Root CA.
     export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
     ```
 
+3. Configure the OAuth Token storage encryption key::
+
+    ```bash
+     export OAUTH_STORAGE_ENCRYPTION_KEY=$(
+       poetry run python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+    )
+    ```
+
+4. Enable Ubuntu WSL to open browser during OAuth flow:
+
+    ```bash
+    sudo sh -c 'echo 1 > /proc/sys/fs/binfmt_misc/WSLInterop'
+    ```
+
 ## PyCharm IDE Development Environment
 
 - First, ensure to follow all the previous steps to "Setting Up Shell

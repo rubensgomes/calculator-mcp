@@ -157,3 +157,27 @@ def get_url() -> str:
     url: str = config["client"]["url"]
     logger.info("MCP client URL: %s", url)
     return url
+
+
+def get_token_dir() -> str:
+    """Return the OAuth token directory from config.yaml.
+
+    Returns:
+        The token directory path string.
+    """
+    config = _load_config()
+    token_dir: str = config["client"]["token_dir"]
+    logger.info("OAuth token directory: %s", token_dir)
+    return token_dir
+
+
+def get_callback_port() -> int:
+    """Return the OAuth callback server port from config.yaml.
+
+    Returns:
+        The callback port number.
+    """
+    config = _load_config()
+    port: int = config["client"]["callback_port"]
+    logger.info("OAuth callback port: %s", port)
+    return port

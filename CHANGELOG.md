@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.12] - 2026-03-05
+
+### Added
+
+- `get_token_dir()` and `get_callback_port()` config helpers in `config.py`
+- `token_dir` and `callback_port` client settings in `config.yaml`
+- OAuth token storage encryption key setup instructions in `SETUP.md`
+- WSL2 browser interop instructions in `SETUP.md`
+- `docs/oauth-troubleshooting.md` troubleshooting guide for OAuth issues
+
+### Changed
+
+- `client.py`: use config-driven `token_dir` and `callback_port` instead of hardcoded values
+- `client.py`: request `client_secret_post` auth method during OAuth dynamic client registration to fix CloudFront proxy 401 on token exchange
+- `client.py`: skip health check for OAuth connections (hosted endpoint requires bearer token)
+
+### Fixed
+
+- OAuth token exchange failing with 401 due to CloudFront Lambda proxy rejecting `Authorization: Basic` header
+
 ## [0.2.11] - 2026-03-03
 
 ### Added
