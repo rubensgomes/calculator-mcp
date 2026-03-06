@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.14] - 2026-03-06
+
+### Changed
+
+- Moved `client.py` from `src/calculator_mcp/` to `tests/integration/` (integration test client only)
+- Updated `CLAUDE.md` project structure and architecture notes to reflect new layout
+
+### Added
+
+- `tests/integration/__init__.py` package init for integration tests
+- `tests/test_config.py` — 14 unit tests for all config helpers
+- `tests/test_main.py` — 3 unit tests for CLI entry point (HTTP, stdio, KeyboardInterrupt)
+- `tests/test_tools.py` — 47 unit tests for all 16 tool functions (direct calls with edge cases)
+
+### Removed
+
+- `src/calculator_mcp/client.py` (moved to `tests/integration/client.py`)
+
 ## [0.2.13] - 2026-03-06
 
 ### Removed

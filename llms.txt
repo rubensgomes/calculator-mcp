@@ -50,7 +50,7 @@ The server ships with a default `config.yaml` bundled inside the package. To ove
 ## Key Files
 
 - `src/calculator_mcp/server.py`: FastMCP server and all 16 tool definitions.
-- `src/calculator_mcp/client.py`: Sample MCP client with OAuth support.
+- `tests/integration/client.py`: Sample MCP client with OAuth support.
 - `src/calculator_mcp/config.py`: Configuration loader and logging setup.
 - `src/calculator_mcp/config.yaml`: Bundled default runtime configuration.
 - `pyproject.toml`: Project metadata and dependencies.

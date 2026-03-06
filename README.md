@@ -92,27 +92,20 @@ poetry run calculator-mcp
 
 ## Running the Client
 
-A sample client is provided in `src/calculator_mcp/client.py` to demonstrate
-the MCP protocol with the server. It lists all available tools and calls each
-one with sample arguments.
+A sample integration test client is provided in `tests/integration/client.py`
+to demonstrate the MCP protocol with the server. It lists all available tools
+and calls each one with sample arguments.
 
 **Important:** The server must be running before you start the client. See
 [Running the Server](#running-the-server) above.
 
-**Run the client directly:**
+**Run the client:**
 
 ```bash
 # requires poetry to be installed
 poetry install # only needed once
 eval $(poetry env activate)
-poetry run python -c "from calculator_mcp.client import main; main()"
-```
-
-**Run as a module (using the client's `__main__` block):**
-
-```bash
-eval $(poetry env activate)
-python src/calculator_mcp/client.py
+python tests/integration/client.py
 deactivate
 ```
 
@@ -166,14 +159,19 @@ calculator-mcp/
 ├── src/calculator_mcp/
 │   ├── __init__.py
 │   ├── __main__.py                # python -m calculator_mcp entry point
-│   ├── client.py                  # Sample MCP client for testing
 │   ├── config.py                  # Loads config.yaml, configures logging
 │   ├── config.yaml                # Bundled default runtime config
 │   ├── main.py                    # CLI entry point, signal handling
 │   └── server.py                  # FastMCP server with 16 @mcp.tool functions
 └── tests/
     ├── __init__.py
-    └── test_server.py
+    ├── test_config.py             # Unit tests for config module
+    ├── test_main.py               # Unit tests for main module
+    ├── test_server.py             # Integration tests via MCP Client
+    ├── test_tools.py              # Unit tests for tool functions
+    └── integration/
+        ├── __init__.py
+        └── client.py              # Sample MCP client with OAuth support
 ```
 
 ## License
