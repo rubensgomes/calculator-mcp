@@ -24,4 +24,4 @@ and the 16 server tool functions.
 - [x] Run `poetry run pytest` and fix any issues
 - [x] Run `export SOURCE_DATE_EPOCH=$(date +%s); poetry build -v` and fix any issues
 - [x] Update `CHANGELOG.md` with release changes
-- [ ] Commit all changes, create version tag, push, and create GitHub release
+- [x] Commit all changes, create version tag, push, and create GitHub release
