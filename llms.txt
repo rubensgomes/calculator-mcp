@@ -35,23 +35,29 @@ This project provides a FastMCP server with 16 calculator tool functions. Each t
 
 ## Configuration
 
-The server reads `config.yaml` from the project root at startup. This file contains:
+The server ships with a default `config.yaml` bundled inside the package. To override it, set the `CALCULATOR_MCP_CONFIG` environment variable to the absolute path of a custom configuration file. The configuration contains:
 
 - `server.transport`: MCP transport type (`stdio` or `http`).
 - `server.host`: Host address for HTTP transport.
 - `server.port`: Port for HTTP transport.
 - `server.timeout`: Tool execution timeout in seconds.
+- `client.is_oauth`: Enable OAuth authentication (default `false`).
+- `client.url`: Server URL for HTTP transport.
+- `client.token_dir`: OAuth token storage directory.
+- `client.callback_port`: OAuth callback server port.
 - `logging`: Python `dictConfig` logging configuration.
 
 ## Key Files
 
 - `src/calculator_mcp/server.py`: FastMCP server and all 16 tool definitions.
+- `src/calculator_mcp/client.py`: Sample MCP client with OAuth support.
 - `src/calculator_mcp/config.py`: Configuration loader and logging setup.
-- `config.yaml`: Runtime configuration.
+- `src/calculator_mcp/config.yaml`: Bundled default runtime configuration.
 - `pyproject.toml`: Project metadata and dependencies.
 
 ## Dependencies
 
-- fastmcp: MCP server framework.
+- fastmcp: MCP server/client framework.
 - calculator-lib-rubens: Calculator library providing arithmetic and math operations.
 - pyyaml: YAML configuration loading.
+- py-key-value-aio[disk]: Encrypted disk storage for OAuth tokens.

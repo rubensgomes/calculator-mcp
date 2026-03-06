@@ -43,10 +43,16 @@ The configuration file has two sections:
 
 ```yaml
 server:
-    transport: "httpd"    # "stdio" or "http"
+    transport: "http"     # "stdio" or "http"
     host: "127.0.0.1"     # Host for HTTP transport
     port: 9000            # Port for HTTP transport
     timeout: 10           # Tool execution timeout in seconds
+
+client:
+    is_oauth: false                        # Enable OAuth authentication
+    url: "http://127.0.0.1:9000/mcp"       # Server URL for HTTP transport
+    token_dir: "/home/user/.fastmcp"       # OAuth token storage directory
+    callback_port: 10000                   # OAuth callback server port
 ```
 
 The `logging` section controls Python logging via `dictConfig`.
@@ -87,8 +93,8 @@ poetry run calculator-mcp
 ## Running the Client
 
 A sample client is provided in `src/calculator_mcp/client.py` to demonstrate
-the MCP protocol with the server. It performs a health check (HTTP transport
-only), lists all available tools, and calls each one with sample arguments.
+the MCP protocol with the server. It lists all available tools and calls each
+one with sample arguments.
 
 **Important:** The server must be running before you start the client. See
 [Running the Server](#running-the-server) above.
@@ -160,6 +166,7 @@ calculator-mcp/
 ├── src/calculator_mcp/
 │   ├── __init__.py
 │   ├── __main__.py                # python -m calculator_mcp entry point
+│   ├── client.py                  # Sample MCP client for testing
 │   ├── config.py                  # Loads config.yaml, configures logging
 │   ├── config.yaml                # Bundled default runtime config
 │   ├── main.py                    # CLI entry point, signal handling

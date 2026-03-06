@@ -42,7 +42,6 @@ import asyncio
 import logging
 import os
 
-import httpx
 from cryptography.fernet import Fernet
 from fastmcp import Client
 from fastmcp.client.auth import OAuth
@@ -119,39 +118,12 @@ _SAMPLE_ARGS: dict[str, dict[str, float | int]] = {
 }
 
 
-async def _check_health(base_url: str) -> None:
-    """Call the /health endpoint and verify the server is reachable.
-
-    Args:
-        base_url: The server base URL (e.g. ``http://127.0.0.1:9000``).
-
-    Raises:
-        RuntimeError: If the health check does not return 200 OK.
-    """
-    health_url = f"{base_url}/health"
-    logger.info("Health check: %s", health_url)
-    async with httpx.AsyncClient() as http_client:
-        response = await http_client.get(health_url)
-    if response.status_code != 200 or response.text != "OK":
-        raise RuntimeError(
-            f"Health check failed: {response.status_code} {response.text}"
-        )
-    logger.info("Health check passed")
-
-
 async def run_client() -> None:
     """Connect to the MCP server, list and call each tool."""
     client = create_client()
 
     async with client:
         await client.ping()
-        transport = get_transport()
-
-        if transport == "http" and not is_oauth():
-            url = get_url()
-            # Strip the /mcp path to get the base URL for the health endpoint.
-            base_url = url.rsplit("/mcp", 1)[0]
-            await _check_health(base_url)
 
         tools = await client.list_tools()
         print(f"Connected — {len(tools)} tools available:\n")

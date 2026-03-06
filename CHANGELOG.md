@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.13] - 2026-03-06
+
+### Removed
+
+- `_check_health()` function and its call from `client.py`
+- Unused `httpx` import from `client.py`
+
+### Fixed
+
+- `"httpd"` typo in README.md configuration example (now `"http"`)
+
+### Changed
+
+- README.md: added `client` config section to configuration example, added `client.py` to project structure, removed health check mention from client description
+- llms.txt: corrected config path description, added client config entries, added `client.py` to key files, added `py-key-value-aio[disk]` to dependencies
+- CLAUDE.md: added OAuth storage to tech stack, added `__main__.py`, `client.py`, and `main.py` to project structure, added architecture notes for client and main modules
+
 ## [0.2.12] - 2026-03-05
 
 ### Added

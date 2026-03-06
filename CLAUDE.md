@@ -12,6 +12,7 @@ Calculator MCP Server — an MCP (Model Context Protocol) server that exposes 16
 - **MCP Framework**: FastMCP (`fastmcp` package)
 - **Calculator Library**: `calculator-lib-rubens` (`calculator_lib.Calculator`)
 - **Config**: PyYAML loading `config.yaml`
+- **OAuth Storage**: `py-key-value-aio[disk]` with `cryptography` (Fernet encryption)
 - **Build System**: Poetry with `poetry-core` backend
 - **Linting**: pylint, black, isort, mypy
 
@@ -19,11 +20,14 @@ Calculator MCP Server — an MCP (Model Context Protocol) server that exposes 16
 
 ```
 calculator-mcp/
-├── config.yaml                    # Runtime config (transport, logging)
 ├── pyproject.toml                 # Project metadata, dependencies, tool config
 ├── src/calculator_mcp/
 │   ├── __init__.py
+│   ├── __main__.py                # python -m calculator_mcp entry point
+│   ├── client.py                  # Sample MCP client with OAuth support
 │   ├── config.py                  # Loads config.yaml, configures logging
+│   ├── config.yaml                # Bundled default runtime config
+│   ├── main.py                    # CLI entry point, signal handling
 │   └── server.py                  # FastMCP server with 16 @mcp.tool functions
 └── tests/
     ├── __init__.py
@@ -42,8 +46,10 @@ calculator-mcp/
 
 ## Architecture Notes
 
-- `config.py` loads `config.yaml` at import time and calls `logging.config.dictConfig()` to configure logging before any logger is used.
+- `config.py` loads `config.yaml` at import time and calls `logging.config.dictConfig()` to configure logging before any logger is used. Set `CALCULATOR_MCP_CONFIG` to override the bundled default.
 - `server.py` imports config helpers from `config.py`, which triggers logging configuration as a side effect.
+- `main.py` is the CLI entry point (registered as `calculator-mcp` console script). It reads transport settings from config and starts the FastMCP server.
+- `client.py` is a sample MCP client that supports both stdio and HTTP transports, with optional OAuth authentication using Fernet-encrypted disk token storage.
 - All 16 tool functions are thin synchronous wrappers that delegate to a shared `Calculator` instance from `calculator-lib-rubens`.
 - Tool docstrings serve as MCP tool descriptions.
 
