@@ -27,4 +27,4 @@ config-driven OAuth settings, and add OAuth troubleshooting documentation.
 - [x] Run `poetry run pytest` and fix any issues
 - [x] Run `export SOURCE_DATE_EPOCH=$(date +%s); poetry build -v` and fix any issues
 - [x] Ensure `CHANGELOG.md` exists and is updated
-- [ ] Commit all changes, create tag, push, and create GitHub release
+- [x] Commit all changes, create tag, push, and create GitHub release
