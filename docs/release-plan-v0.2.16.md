@@ -1,13 +1,12 @@
-# Release Plan — v0.2.15
+# Release Plan — v0.2.16
 
 **Date**: 2026-04-05
 **Repository**: rubensgomes/calculator-mcp
 
 ## Summary
 
-Dependency version bumps and cleanup: upgrade `fastmcp` to 3.2.0+,
-`calculator-lib-rubens` to 0.1.6+, bump dev dependencies, and remove unused
-`todo.py` OAuth example script.
+Rename PyPI package from `calculator-mcp` to `calculator-mcp-rubens` to resolve
+PyPI upload permission conflict. No functional changes.
 
 ## Checklist
 
@@ -18,5 +17,5 @@ Dependency version bumps and cleanup: upgrade `fastmcp` to 3.2.0+,
 - [x] Run `poetry run pytest` and fix any issues
 - [x] Run `export SOURCE_DATE_EPOCH=$(date +%s); poetry build -v` and fix any issues
 - [x] Ensure `CHANGELOG.md` exists and update with current release changes
-- [x] Commit all changes to main, create version tag, push, and create GitHub release
-- [ ] Run `poetry publish -v` as the very last step — **BLOCKED**: PyPI 403 Forbidden (user `rubens_gomes` not authorized to upload to project `calculator-mcp`)
+- [ ] Commit all changes to main, create version tag, push, and create GitHub release
+- [ ] Run `poetry publish -v` as the very last step

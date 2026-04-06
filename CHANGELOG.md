@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.16] - 2026-04-05
+
+### Changed
+
+- Renamed PyPI package from `calculator-mcp` to `calculator-mcp-rubens`
+
 ## [0.2.15] - 2026-04-05
 
 ### Changed
