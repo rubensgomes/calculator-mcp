@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.15] - 2026-04-05
+
+### Changed
+
+- Bumped `fastmcp` minimum version from 3.1.0 to 3.2.0
+- Bumped `calculator-lib-rubens` minimum version from 0.1.5 to 0.1.6
+- Bumped dev dependencies: `black` 26.3.1+, `coverage` 7.13.5+, `pytest-cov` 7.1.0+, `pytest-asyncio` 1.4.0a0+, `mypy` 1.20.0+
+
+### Removed
+
+- Unused `todo.py` OAuth example script
+
 ## [0.2.14] - 2026-03-06
 
 ### Changed
