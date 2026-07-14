@@ -1,0 +1,144 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram id="Hel_7d9eS21k4FwG8tew" name="Page-1">
+    <mxGraphModel dx="997" dy="475" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-1" value="Client Application" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="150" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-2" value="User Agent (Browser)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="434" y="20" width="169" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-3" value="Authorization Server" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="739" y="20" width="164" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-4" value="Resource Server (API)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=65;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="953" y="20" width="170" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-5" value="Generate PKCE code_verifier&#xa;&amp; code_challenge" style="curved=1;endArrow=block;rounded=0;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-1" target="EA4Ac-vz3zfMX_RA2lEB-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="146" y="129" />
+              <mxPoint x="146" y="159" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-6" value="1" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-5">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-57" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-7" value="Redirect to /authorize&#xa;(code_challenge, client_id)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-1" target="EA4Ac-vz3zfMX_RA2lEB-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="315" y="213" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-8" value="2" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-7">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-219" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-9" value="GET /authorize" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-2" target="EA4Ac-vz3zfMX_RA2lEB-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="678" y="267" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-10" value="3" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-9">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-159" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-11" value="User authenticates&#xa;&amp; consents" style="curved=1;endArrow=block;rounded=0;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-3" target="EA4Ac-vz3zfMX_RA2lEB-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="872" y="321" />
+              <mxPoint x="872" y="351" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-12" value="4" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-11">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-57" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-13" value="Redirect with Authorization Code" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-3" target="EA4Ac-vz3zfMX_RA2lEB-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="681" y="405" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-14" value="5" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-13">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="145" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-15" value="Authorization Code" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-2" target="EA4Ac-vz3zfMX_RA2lEB-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="318" y="459" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-16" value="6" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-15">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="205" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-17" value="POST /token&#xa;(code + code_verifier)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-1" target="EA4Ac-vz3zfMX_RA2lEB-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="467" y="513" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-18" value="7" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-17">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-370.5" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-19" value="Access Token&#xa;(+ Refresh Token)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-3" target="EA4Ac-vz3zfMX_RA2lEB-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="567" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-20" value="8" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-19">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="356.5" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-21" value="API Request&#xa;(Bearer Access Token)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-1" target="EA4Ac-vz3zfMX_RA2lEB-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="575" y="621" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-22" value="9" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-21">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-479" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-23" value="Protected Resource Response" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=18;" edge="1" parent="1" source="EA4Ac-vz3zfMX_RA2lEB-4" target="EA4Ac-vz3zfMX_RA2lEB-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="578" y="675" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EA4Ac-vz3zfMX_RA2lEB-24" value="10" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;fontSize=18;" vertex="1" parent="EA4Ac-vz3zfMX_RA2lEB-23">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="465" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
